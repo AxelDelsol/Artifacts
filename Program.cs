@@ -1,10 +1,15 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using System.CommandLine;
 using System.Configuration;
-using System.Collections.Specialized;
-using System.Xml.Linq;
+
+var appSettings = ConfigurationManager.AppSettings;
+string token = appSettings["token"] ?? throw new ConfigurationErrorsException("Token is required in configuration");
 
 
-NameValueCollection config = ConfigurationManager.AppSettings;
-string sAttr = config.Get("token") ?? throw new ArgumentNullException("token key is required");
+var rootCommand = new RootCommand("CLI for Artifacts MMORPG");
+var moveCommand = new Artifacts.Commands.Move("move", "Move a character at a given position");
 
-Console.WriteLine($"The environment variable is {sAttr}");
+rootCommand.AddCommand(moveCommand);
+
+
+return await rootCommand.InvokeAsync(args);
+

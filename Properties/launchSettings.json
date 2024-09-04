@@ -1,0 +1,16 @@
+{
+  "profiles": {
+    "Artifacts": {
+      "commandName": "Project",
+      "commandLineArgs": "move -c Toupie -p 0 0"
+    },
+    "Move00": {
+      "commandName": "Project",
+      "commandLineArgs": "move -c Toupie -p 0 0"
+    },
+    "Move01": {
+      "commandName": "Project",
+      "commandLineArgs": "move -c Toupie -p 0 1"
+    }
+  }
+}
