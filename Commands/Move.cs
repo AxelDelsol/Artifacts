@@ -1,4 +1,5 @@
-﻿using System.CommandLine;
+﻿using Artifacts.Utils;
+using System.CommandLine;
 namespace Artifacts.Commands
 {
     internal class Move : Command
@@ -19,7 +20,9 @@ namespace Artifacts.Commands
         public async Task Run(string character, Position position)
         {
             var client = ActionClient.Create();
-            await client.move(character, position);
+            var move = await client.move(character, position);
+            Console.WriteLine($"Moved {character} at {position}");
+            move.WaitDisplay();
         }
     }
 }

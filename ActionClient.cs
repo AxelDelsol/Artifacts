@@ -19,15 +19,23 @@ internal class ActionClient(HttpClient client)
         return new ActionClient(client);
     }
 
-    public async Task move(string character, Position position)
+    public async Task<Move> move(string character, Position position)
     {
         using var response = await client.PostAsJsonAsync($"/my/{character}/action/move", position);
         response.EnsureSuccessStatusCode();
 
         var move = await response.Content.ReadBodyAsAsync<Root<Move>>();
-        var cooldown_seconds = move!.Data.Cooldown.RemainingSeconds;
+        return move!.Data;
+    }
 
-        waitFor(cooldown_seconds);
+    internal async Task<SkillData> Gather(string character)
+    {
+        using var response = await client.PostAsync($"/my/{character}/action/gathering", null);
+        response.EnsureSuccessStatusCode();
+
+        var gather = await response.Content.ReadBodyAsAsync<Root<SkillData>>()!;
+
+        return gather!.Data;
     }
 
     private void waitFor(int cooldown_seconds)

@@ -11,6 +11,10 @@
     "Move01": {
       "commandName": "Project",
       "commandLineArgs": "move -c Toupie -p 0 1"
+    },
+    "Gather": {
+      "commandName": "Project",
+      "commandLineArgs": "gather -c Toupie -i copper_ore"
     }
   }
 }

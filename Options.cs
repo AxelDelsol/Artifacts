@@ -46,5 +46,13 @@ namespace Artifacts
             AllowMultipleArgumentsPerToken = true,
         };
 
+        public static Option<int> Quantity = new(
+            aliases: ["--quantity", "-q"],
+            description: "How many items should we collect",
+            getDefaultValue: () => 1);
+
+        public static Option<string> Item = new(
+            aliases: ["--item", "-i"],
+            description: "Code item");
     }
 }

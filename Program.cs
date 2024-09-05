@@ -7,8 +7,11 @@ string token = appSettings["token"] ?? throw new ConfigurationErrorsException("T
 
 var rootCommand = new RootCommand("CLI for Artifacts MMORPG");
 var moveCommand = new Artifacts.Commands.Move("move", "Move a character at a given position");
+var gatherCommand = new Artifacts.Commands.Gather("gather", "Gather the current resource");
 
 rootCommand.AddCommand(moveCommand);
+rootCommand.AddCommand(gatherCommand);
+
 
 
 return await rootCommand.InvokeAsync(args);
